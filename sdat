@@ -1,0 +1,100 @@
+//#include <iostream>
+//#include <string>
+//using namespace std;
+//
+//int main() {
+//	string s, t;
+//	getline(cin, s);
+//	int sum = 0;
+//	for (int i = 0; i < s.size(); i++) {
+//		if ((int)s[i] >= (int)'0' && (int)s[i] <= (int)'9') {
+//			sum += (int)s[i] - 48;
+//		}
+//	}
+//	cout << sum;
+//}
+
+//#include <iostream>
+//using namespace std;
+//
+//int CeIzEnPoKa(int n, int k) {
+//	if (k == 0 || n == k)
+//		return 1;
+//	else if (k > 0 && n > 0 && n > k)
+//		return CeIzEnPoKa(k, n - 1) + CeIzEnPoKa(k - 1, n - 1);
+//}
+//
+//int main() {
+//	setlocale(LC_ALL, "Russian");
+//	int n, k;
+//	cout << "Введите n и k\n";
+//	cin >> n >> k;
+//	cout << CeIzEnPoKa(n, k);
+//}
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+double geom_prog_n(int n, float a, float q) {
+    if (n == 1) // Если дошли до счетчика 1, то возвращаем первый член прогрессии
+        return a;
+    else
+        return geom_prog_n(n - 1, a, q) * q; // иначе домножаем на q и уменьшаем счетчик (потому что n - й член геом прогресии это a1 * q^(n - 1)
+}
+
+double geom_prog_sum(int n, float a, float q) {
+    double s = 0;
+    for (int i = 1; i <= n; i++)
+        s += geom_prog_n(i, a, q);
+    return s;
+}
+
+int main()
+{
+    double res, q, a;
+    int n;
+    setlocale(LC_ALL, "Russian");
+    cout << "Введите первый член, множитель и номер члена геом прогрессии" << endl;
+    cin >> a >> q >> n;
+    double H = geom_prog_n(n, a, q);
+    cout << "N-ый член прогресси:\n" << H << endl;
+    res = geom_prog_sum(n, a, q);
+    cout << "Сумма прогрессии:\n";
+    cout << res;
+}
+
+//#include <iostream>
+//#include <cmath>
+//
+//using namespace std;
+//
+//float F(float x) {
+//	if (abs(x) <= 0.1)
+//		return x * x * x - 0.1;
+//	if (abs(x) > 0.1 && abs(x) <= 0.2)
+//		return 0.2 * x - 0.1;
+//	if (abs(x) > 0.2)
+//		return x * x * x + 0.1;
+//}
+//void F(float x, float& y) {
+//	y = F(x);
+//}
+//
+//int main()
+//{
+//	float x, y, step;
+//	setlocale(LC_ALL, "Russian");
+//	cout << "Введите шаг расчета значений\n";
+//	cin >> step;
+//	cout << "x  f(x)" << endl;
+//	for (x = -1.; x <= 13.; x += step) {
+//		cout << x << "  " << F(x) << endl;
+//	}
+//	cout << "------------\n";
+//	cout << "x  f(x)" << endl;
+//	for (x = -1.; x <= 13.; x += step) {
+//		F(x, y);
+//		cout << x << "  " << y << endl;
+//	}
+//}
