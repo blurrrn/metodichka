@@ -25,16 +25,13 @@ public:
             this->add(t->inf);
         }
     }
-    unsigned int getSize()
-    {
-        return this->size;
-    }
     Item* begin() {
         return this->first;
     }
     Item* end() {
         return this->last;
     }
+    //добавить новый эл. в конец списка
     void add(T x)
     {
         Item* t = new Item(x);
@@ -51,6 +48,7 @@ public:
         }
         size++;
     }
+    //удалить последний эл
     void pop_back()
     {
         if (size == 0)
@@ -80,6 +78,7 @@ public:
             this->pop_back();
         }
     }
+    //удаление эл-та
     void erase(Item* t)
     {
         if (t == nullptr)
@@ -102,6 +101,7 @@ public:
         delete t;
         size--;
     }
+    //возвращает макс эл
     T get_max()
     {
         T mn = this->first->inf;
@@ -114,6 +114,7 @@ public:
         }
         return mn;
     }
+    //удалить первый эл
     void pop_head()
     {
         if (first == nullptr)
@@ -133,6 +134,7 @@ public:
         delete t;
         size--;
     }
+    //удаление эл-тов с заданным значением
     void delete_value(T value)
     {
         Item* t = first;
@@ -150,6 +152,7 @@ public:
             }
         }
     }
+    //вставка эл-та справа
     void insert_after(Item* t, T x)
     {
         if (t == nullptr)
@@ -168,12 +171,14 @@ public:
         t->next = newItem;
         size++;
     }
+    //печатает список
     void print()
     {
         for (Item* t = first; t != nullptr; t = t->next)
             cout << t->inf << " ";
         cout << endl;
     }
+    //печатает наоборот(навсякий)
     void reverse_print()
     {
         for (Item* t = last; t != nullptr; t = t->prev)
@@ -195,12 +200,15 @@ int main()
 {
     List<int> lst;
     int t, n = 10;
+    //добавляем с клавиатуры эл-ты в список
     for (int i = 0; i < n; i++)
     {
         cin >> t;
         lst.add(t);
     }
+    //находим макс эл
     int m = lst.get_max();
+    //удаляем все эл-ты с заданным значением (макс)
     lst.delete_value(m);
     lst.print();
     /*List<int> lst1;
